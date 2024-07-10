@@ -4,9 +4,12 @@ import Image from "next/image";
 import Hero from "./_components/Hero";
 import CategoryList from "./_components/CategoryList";
 import GlobalApi from "./_services/GlobalApi";
-import { useEffect } from "react";
+import { Suspense, useEffect, useState } from "react";
 
 export default function Home() {
+  const [categoryList, setCategoryList] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
     getCategoryList();
   }, []);
@@ -14,7 +17,8 @@ export default function Home() {
   const getCategoryList = () => {
     GlobalApi.getCategory()
       .then((resp) => {
-        console.log(resp);
+        setCategoryList(resp.categories);
+        setIsLoading(false);
       })
       .catch((err) => console.error(err));
   };
@@ -22,7 +26,9 @@ export default function Home() {
     <div>
       <Hero />
 
-      <CategoryList />
+    
+      <CategoryList categoryList={categoryList} isLoading={isLoading} />
+
     </div>
   );
 }
