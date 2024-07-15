@@ -1,8 +1,17 @@
+"use client"
 import { Button } from '@/components/ui/button'
+import { signIn, useSession } from 'next-auth/react'
 import Image from 'next/image'
-import React from 'react'
+import React, { useEffect } from 'react'
 
 function Header() {
+
+  const {data}=useSession(); 
+
+  useEffect(()=>{
+    console.log(data);
+  }, [data])
+
   return (
     <div className='p-5 shadow-sm flex justify-between'>
         <div className='flex item-center gap-8'>
@@ -16,7 +25,20 @@ function Header() {
        
         </div>
         <div>
-            <Button>Get Started</Button>
+          {data?.user?
+          <Image src={data?.user?.image}
+          alt='user'
+          width={40}
+          height={40}
+          className='rounded-full'
+          />:
+          <Button onClick={() => signIn(
+            "descope", 
+            { callbackUrl: "/dashboard" }
+        )}>Login / SignUp</Button>
+          
+        }
+            
         </div>
     </div>
   )
