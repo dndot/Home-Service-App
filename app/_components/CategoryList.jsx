@@ -1,5 +1,7 @@
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
+import CategorySideBar from "../(routes)/search/_components/CategorySideBar";
 
 function CategoryList({ categoryList, isLoading }) {
   if (isLoading) {
@@ -8,6 +10,7 @@ function CategoryList({ categoryList, isLoading }) {
       <div className="mx-4 md:mx-22 lg:mx-52 grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
         {[...Array(6)].map((_, index) => (
           <div
+           // href={"/search/"+Category.name}
             key={index}
             className="flex flex-col items-center justify-center gap-2 bg-purple-100 p-5 rounded-lg animate-pulse"
           >
@@ -24,7 +27,8 @@ function CategoryList({ categoryList, isLoading }) {
   return (
     <div className="mx-4 md:mx-22 lg:mx-52 grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
       {categoryList?.map((Category, index) => (
-        <div
+        <Link
+        href={"/search/"+Category.name}
           key={index}
           className="flex flex-col items-center justify-center gap-2 bg-purple-100 p-5 rounded-lg cursor-pointer hover:scale-110 transition-all ease-in-out"
         >
@@ -35,7 +39,7 @@ function CategoryList({ categoryList, isLoading }) {
             height={40}
           />
           <h2 className="text-primary">{Category.name}</h2>
-        </div>
+        </Link>
       ))}
     </div>
   );
