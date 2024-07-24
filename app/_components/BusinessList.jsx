@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 function BusinessList({ businessList, title, isLoading }) {
@@ -11,7 +12,7 @@ function BusinessList({ businessList, title, isLoading }) {
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-5 ">
           {[...Array(4)].map((_, index) => (
-            <div
+            <div 
               key={index}
               className="shadow-md rounded-lg animate-pulse"
               style={{ minWidth: "250px" }}
@@ -36,7 +37,7 @@ function BusinessList({ businessList, title, isLoading }) {
 
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-5 ">
         {businessList?.map((business, index) => (
-          <div
+          <Link href={'/details/' + business.Id}
             key={index}
             className="shadow-md rounded-lg hover:shadow-lg cursor-pointer hover:shadow-primary hover:scale-105 ease-in-out"
           >
@@ -56,7 +57,7 @@ function BusinessList({ businessList, title, isLoading }) {
               <h2 className="text-gray-500 text-sm">{business.address}</h2>
               <Button className="rounded-lg mt-3 hover:bg-green-400">Book Now</Button>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </div>
