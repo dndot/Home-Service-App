@@ -37,7 +37,7 @@ function BusinessList({ businessList, title, isLoading }) {
 
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-5 ">
         {businessList?.map((business, index) => (
-          <Link href={'/details/' + business.Id}
+          <Link href={'/details/' + business.id}
             key={index}
             className="shadow-md rounded-lg hover:shadow-lg cursor-pointer hover:shadow-primary hover:scale-105 ease-in-out"
           >
