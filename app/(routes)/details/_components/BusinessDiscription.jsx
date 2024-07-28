@@ -1,10 +1,21 @@
+import Image from 'next/image'
 import React from 'react'
 
-function BusinessDiscription(business) {
-  return (
+function BusinessDiscription({business}) {
+  return business?.name&& (
     <div>
          <h2 className='font-bold text-[25px] '>Description</h2>
          <p className='mt-4 text-lg text-gray-600'>{business.about}</p>
+         <h2 className='font-bold text-[25px] mt-8 '>Galary</h2>
+         <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mt-5'>
+          {business?.image?.map((Item, index) =>(
+            <Image src={Item?.url} key={index}
+            alt='image'
+            width={700}
+            height={200}
+            className='rounded-lg'/>
+          ))}
+         </div>
     </div>
   )
 }
