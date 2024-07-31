@@ -37,7 +37,7 @@ function BusinessDetail({ params }) {
   <div className="py-8 md:py-20 px-10 md:px-36">
     <BusinessInfo business={business}/>
 
-    <div className="grid grid-cols-3 mt-16 ">
+    <div className="flex grid-cols-3 mt-16 ">
         <div className="col-span-3 md:grid-span-2 order-last md:order-first">
             <BusinessDiscription business={business}/>
         </div>
